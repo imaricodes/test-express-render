@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3000");
 
 const Home = () => {
   const [message, setMessage] = useState("");
