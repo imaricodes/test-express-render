@@ -9,12 +9,12 @@ import cors from "cors";
 const app = express();
 const httpServer = createServer(app);
 const PORT = process.env.PORT || 3000;
-const io = new Server(httpServer, {
+// const io = new Server(httpServer, {
   // cors: {
   //   origins: "*:*",
   //   methods: ["GET", "POST"]
   // },
-});
+// });
 
 // Apply CORS middleware to Express app
 // app.use(cors({
@@ -24,7 +24,13 @@ const io = new Server(httpServer, {
 //   credentials: true
 // }));
 
-// const io = new Server(httpServer);
+const io = new Server(httpServer);
+
+app.use(cors({
+  origin: process.env.FRONTEND_ORIGIN || "http://localhost:3000", // Allow requests from frontend origin or localhost:3000 for development
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 
 app.get("/hello", (req, res) => {
