@@ -10,10 +10,10 @@ const app = express();
 const httpServer = createServer(app);
 const PORT = process.env.PORT || 3000;
 const io = new Server(httpServer, {
-  cors: {
-    origins: "*:*",
-    methods: ["GET", "POST"]
-  },
+  // cors: {
+  //   origins: "*:*",
+  //   methods: ["GET", "POST"]
+  // },
 });
 
 // Apply CORS middleware to Express app
@@ -31,9 +31,6 @@ app.get("/hello", (req, res) => {
   res.send("Hello Vite + React!");
 });
 
-// ViteExpress.listen(app, 3000, () =>
-//   console.log("Server is listening on port 3000...")
-// );
 
 io.on("connection", (socket) => {
   console.log("A user connected");
@@ -49,12 +46,8 @@ io.on("connection", (socket) => {
   });
 });
 
-// httpServer.listen(3000, () => {
-//   console.log("Socket.IO server is listening on port 3001...");
-// });
 
 // Use ViteExpress without starting another listener
-
 httpServer.listen(PORT, () => {
   console.log("Server (Express and Socket.IO) is listening on port 3000...");
 });
