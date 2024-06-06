@@ -8,6 +8,7 @@ import cors from "cors";
 
 const app = express();
 const httpServer = createServer(app);
+const PORT = process.env.PORT || 3000;
 // const io = new Server(httpServer, {
 //   cors: {
 //     origin: "*", // Adjust the origin to your specific needs
@@ -16,19 +17,17 @@ const httpServer = createServer(app);
 // });
 
 // Apply CORS middleware to Express app
-app.use(cors({
-  origin: "http://localhost:3000", // Allow requests from port 3000
-  methods: ["GET", "POST"],
-  // allowedHeaders: ["Content-Type"],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: "http://localhost:3000", // Allow requests from port 3000
+//   methods: ["GET", "POST"],
+//   // allowedHeaders: ["Content-Type"],
+//   credentials: true
+// }));
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000", // Allow requests from port 3000
-    methods: ["GET", "POST"],
-    // allowedHeaders: ["Content-Type"],
-    credentials: true
+    origins: "*:*",
+    methods: ["GET", "POST"]
   }
 });
 
@@ -62,6 +61,6 @@ io.on("connection", (socket) => {
 // Use ViteExpress without starting another listener
 ViteExpress.bind(app, httpServer);
 
-httpServer.listen(3000, () => {
+httpServer.listen(PORT, () => {
   console.log("Server (Express and Socket.IO) is listening on port 3000...");
 });
