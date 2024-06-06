@@ -54,8 +54,9 @@ io.on("connection", (socket) => {
 // });
 
 // Use ViteExpress without starting another listener
-ViteExpress.bind(app, httpServer);
 
 httpServer.listen(PORT, () => {
   console.log("Server (Express and Socket.IO) is listening on port 3000...");
 });
+
+ViteExpress.bind(app, httpServer);
