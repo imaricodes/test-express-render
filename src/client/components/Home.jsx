@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div>
+    <div className='text-red-600'>
 
         Home
       <Link to="/About">
