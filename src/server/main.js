@@ -9,12 +9,12 @@ import cors from "cors";
 const app = express();
 const httpServer = createServer(app);
 const PORT = process.env.PORT || 3000;
-// const io = new Server(httpServer, {
-//   cors: {
-//     origin: "*", // Adjust the origin to your specific needs
-//     methods: ["GET", "POST"],
-//   },
-// });
+const io = new Server(httpServer, {
+  cors: {
+    origins: "*:*",
+    methods: ["GET", "POST"]
+  },
+});
 
 // Apply CORS middleware to Express app
 // app.use(cors({
@@ -24,12 +24,7 @@ const PORT = process.env.PORT || 3000;
 //   credentials: true
 // }));
 
-const io = new Server(httpServer, {
-  cors: {
-    origins: "*:*",
-    methods: ["GET", "POST"]
-  }
-});
+// const io = new Server(httpServer);
 
 
 app.get("/hello", (req, res) => {
